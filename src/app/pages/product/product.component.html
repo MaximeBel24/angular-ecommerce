@@ -1,1 +1,32 @@
-<p>product works!</p>
+<div class="container py-5 bg-white pe-10">
+    <div class="row" style="height: 800px;">
+        Scrollez vers le bas
+    </div>
+</div>
+
+<div class="container py-5 bg-white pe-10">
+    <h1>Commentaires</h1>
+    @defer (on viewport) {
+        <app-comments />
+    }
+    @loading (after 4s; minimum 3s) {
+        <div class="loading-indicator">
+            Veuillez patienter...
+        </div>
+    }
+    @error {
+        Erreur lors du chargement des commentaires
+    }
+    @placeholder (minimum 3000ms) {
+        <div class="placeholder-content">
+            Chargement en cours...
+        </div>
+    }
+    <!-- <button class="btn btn-primary" (click)="toggleCommentsVisibility()">
+        Afficher / Cacher les commentaires
+    </button>
+    
+    @defer (when areCommentsVisible) {
+        <app-comments />
+        } -->
+</div>
