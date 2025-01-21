@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CardComponent } from "./card/card.component";
+import { ProductService } from '../../core/services/product.service';
+import { Product } from '../../core/interfaces/product.interface';
 
 @Component({
   selector: 'app-products',
@@ -7,46 +9,15 @@ import { CardComponent } from "./card/card.component";
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss'
 })
-export class ProductsComponent {
+export class ProductsComponent implements OnInit{
 
-  products = [
-    {
-      id: 1,
-      title: 'Product 1',
-      price: 100,
-      image: '',
-      rating: {
-        rate: 0,
-        count: 0
-      },
-      description: 'Description 1',
-      category: 'Category 1'
-    },
-    {
-      id: 2,
-      title: 'Product 2',
-      price: 200,
-      image: '',
-      rating: {
-        rate: 0,
-        count: 0
-      },
-      description: 'Description 2',
-      category: 'Category 2'
-    },
-    {
-      id: 3,
-      title: 'Product 3',
-      price: 300,
-      image: '',
-      rating: {
-        rate: 0,
-        count: 0
-      },
-      description: 'Description 3',
-      category: 'Category 3'
-    }
-  ]
+  private productService = inject(ProductService);
+
+  products: Product[] = [];
+
+  ngOnInit(): void {
+    this.products = this.productService.getAll();
+  }
 
   removeProduct(id: number) {
     this.products = this.products.filter(product => product.id !== id)
