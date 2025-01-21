@@ -6,11 +6,13 @@
                 <a href="" class="nav-link active">Home</a>
             </li>
         </ul>
+
         <div class="d-flex">
             <div class="d-flex" role="search">
                 <input type="search" class="form-control me-2" [placeholder]="textInput" [(ngModel)]="searchInput" (keyup.enter)="search()"/>
                 <button class="btn btn-sm btn-primary" (click)="search()">Rechercher</button>
             </div>
         </div>
+        <app-avatar class="m-3"/>
     </div>
 </nav>

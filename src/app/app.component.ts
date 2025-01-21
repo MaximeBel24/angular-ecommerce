@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { NavbarComponent } from "./features/navbar/navbar.component";
 import { ProductCardComponent } from "./shared/components/product-card/product-card.component";
 import { ProductComponent } from "./pages/product/product.component";
+import { ProductsComponent } from "./features/products/products.component";
 
 @Component({
   selector: 'app-root',
-  imports: [NavbarComponent, ProductCardComponent, ProductComponent],
+  imports: [NavbarComponent, ProductCardComponent, ProductComponent, ProductsComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

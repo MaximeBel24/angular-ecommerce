@@ -1,7 +1,7 @@
 <div id="products">
   <div class="row mx-0">
-    @for (prod of products; track prod.id) {
-      <app-card [product]="prod" class="col-lg-4 col-md-6 pt-md-4 pt-3" (deleteProduct)="removeProduct($event)"></app-card>
+    @for (product of products; track prod.id) {
+      <app-card [product]="product" class="col-lg-4 col-md-6 pt-md-4 pt-3" (deleteProduct)="removeProduct($event)"></app-card>
     } @empty {
       <div class="alert alert-info">Aucun produit trouvé</div>
     }
