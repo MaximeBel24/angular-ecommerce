@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { computed, Injectable, signal } from '@angular/core';
 import { Product } from '../interfaces/product.interface';
 
 @Injectable({
@@ -6,12 +6,22 @@ import { Product } from '../interfaces/product.interface';
 })
 export class ProductService {
 
-  getAll(): Product[] {
-    return [
+  products = signal<Product[]>([]);
+  searchProduct = signal<string>('');
+  productsSearched = computed(() => {
+    const str = this.searchProduct().toLowerCase();
+    if ( str == '') {
+      return this.products();
+    }
+    return this.products().filter((product) => product.title.toLowerCase().includes(str));
+  })
+
+  getAll(): void {
+    this.products.set([
       {
         id: 1,
-        title: 'Product 1',
-        price: 100,
+        title: 'Ordinateur portable',
+        price: 200000,
         image: '',
         rating: {
           rate: 0,
@@ -22,7 +32,7 @@ export class ProductService {
       },
       {
         id: 2,
-        title: 'Product 2',
+        title: 'IPhone 16 Pro',
         price: 200,
         image: '',
         rating: {
@@ -34,7 +44,7 @@ export class ProductService {
       },
       {
         id: 3,
-        title: 'Product 3',
+        title: 'Ecran 24 pouces',
         price: 300,
         image: '',
         rating: {
@@ -44,8 +54,11 @@ export class ProductService {
         description: 'Description 3',
         category: 'Category 3'
       }
-    ]
+    ])
   }
-
-  // constructor() { }
+  
+  delete(id: number) {
+    const newProducts = this.products().filter(product => product.id !== id);
+    this.products.set(newProducts);
+  }
 }

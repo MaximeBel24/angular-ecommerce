@@ -1,17 +1,19 @@
 <nav class="navbar navbar-light bg-light">
     <div class="container-fluid">
         <a routerLink="/" class="navbar-brand">E-Commerce</a>
-        <ul class="navbar-nav me-auto">
+        <ul class="navbar-nav me-auto d-flex flex-row gap-3">
             <li class="nav-item">
                 <a routerLink="/" class="nav-link active">Home</a>
+            </li>
+            <li class="nav-item">
+                <a routerLink="/products" class="nav-link">Products</a>
             </li>
         </ul>
         
         <div class="d-flex gap-3">
 
             <div class="d-flex" role="search">
-                <input type="search" class="form-control" [placeholder]="textInput" [(ngModel)]="searchInput" (keyup.enter)="search()"/>
-                <button class="btn btn-sm btn-primary" (click)="search()">Rechercher</button>
+                <input type="search" class="form-control" [formControl]="searchInput"/>
             </div>
             <div class="d-flex" role="search">
                 <button class="btn btn-sm btn-success" routerLink="/login">

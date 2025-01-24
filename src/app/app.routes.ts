@@ -4,6 +4,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { AuthGuard } from './core/guards/auth.guard';
+import { ProductsComponent } from './features/products/products.component';
 
 export const routes: Routes = [
     {
@@ -13,6 +14,10 @@ export const routes: Routes = [
     {
         path: 'login',
         component: LoginComponent
+    },
+    {
+        path: 'products',
+        component: ProductsComponent
     },
     {
         path: 'admin',

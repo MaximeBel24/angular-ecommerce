@@ -1,7 +1,6 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, effect, inject, OnInit } from '@angular/core';
 import { CardComponent } from "./card/card.component";
 import { ProductService } from '../../core/services/product.service';
-import { Product } from '../../core/interfaces/product.interface';
 
 @Component({
   selector: 'app-products',
@@ -11,15 +10,20 @@ import { Product } from '../../core/interfaces/product.interface';
 })
 export class ProductsComponent implements OnInit{
 
-  private productService = inject(ProductService);
+  productService = inject(ProductService);
+  products = this.productService.productsSearched;
 
-  products: Product[] = [];
+  constructor() {
+    effect(() => {
+      console.log('Produit recherché : ', this.productService.searchProduct());
+    })
+  }
 
-  ngOnInit(): void {
-    this.products = this.productService.getAll();
+  ngOnInit() {
+    this.productService.getAll();
   }
 
   removeProduct(id: number) {
-    this.products = this.products.filter(product => product.id !== id)
+    this.productService.delete(id);
   }
 }
