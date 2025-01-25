@@ -33,6 +33,7 @@
             ],
             "styles": [
               "src/styles.scss",
+              "notyf/notyf.min.css",
               "bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": []

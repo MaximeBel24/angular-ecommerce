@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { CartService } from '../../../core/services/cart.service';
+import { CartService } from '../../../core/services/cart/cart.service';
 
 @Component({
   selector: 'app-cart',
