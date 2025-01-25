@@ -1,43 +1,38 @@
 <div class="text-center page-form">
     <main class="form-signin">
-        <form (ngSubmit)="login(myForm)" #myForm="ngForm">
+        <form (ngSubmit)="login()" [formGroup]="form">
             <h1 class="h3 mb-3 fw-normal">Connexion</h1>
 
-            @if (myForm.submitted && myForm.invalid) {
+            @if (submitted && form.invalid) {
               <div class="alert alert-danger" role="alert">
-                @if (email.hasError('email')) {
+                @if (propEmail.hasError('email')) {
                   <span>Email Invalide</span>
-                } @else if (email.hasError('minlength')) {
-                  <span>
-                    Votre email fait {{ email.getError('minlength').actualLength }} caractères, 
-                    il faut {{ email.getError('minlength').requiredLength }} caractères.
-                  </span>
-                } @else if (email.hasError('required')) {
+                } @else if (propEmail.hasError('required')) {
                     <span>Email requis</span>
-                } @else if (password.hasError('required')) {
+                } @else if (propPassword.hasError('required')) {
                     <span>Mot de passe requis</span>
-                } @else if (password.hasError('minlength')) {
+                } @else if (propPassword.hasError('minlength')) {
                     <span>
-                      Votre mot de passe fait {{ password.getError('minlength').actualLength }} caractères, 
-                      il faut {{ password.getError('minlength').requiredLength }} caractères.
+                      Votre mot de passe fait {{ propPassword.getError('minlength').actualLength }} caractères, 
+                      il faut {{ propPassword.getError('minlength').requiredLength }} caractères.
                     </span>
                   }
               </div>
             } 
 
             <div class="form-floating">
-                <input type="email" name="email" id="floatingEmail" class="form-control" placeholder="name@example.com" minlength="5" ngModel required email #email="ngModel">
+                <input type="email" id="floatingEmail" class="form-control" placeholder="name@example.com" [formControl]="propEmail">
                 <label for="floatingEmail">Email</label>
             </div>
 
             <div class="form-floating">
-                <input type="password" name="password" id="floatingPassword" class="form-control" placeholder="****" minlength="8" required ngModel #password="ngModel">
+                <input type="password" id="floatingPassword" class="form-control" placeholder="****" [formControl]="propPassword">
                 <label for="floatingPassword">Mot de passe</label>
             </div>
 
             <div class="checkbox mb-3">
                 <label>
-                    <input type="checkbox" name="remember" [ngModel]="false">
+                    <input type="checkbox" [formControl]="propRemember">
                     Se rappeler de moi
                 </label>
             </div>
