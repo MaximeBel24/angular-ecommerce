@@ -1,21 +1,22 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Product } from '../../../core/interfaces/product.interface';
 import { CurrencyPipe } from '@angular/common';
+import { Product } from '../../../core/interfaces/product.interface';
+import { ConfirmDirective } from '../../../shared/directives/confirm.directive';
 
 @Component({
   selector: 'app-card',
-  imports: [CurrencyPipe],
+  imports: [CurrencyPipe, ConfirmDirective],
   templateUrl: './card.component.html',
-  styleUrl: './card.component.scss'
+  styleUrl: './card.component.scss',
 })
 export class CardComponent {
-  userIsAdmin = true;
   quantity = 1;
-
+  
+  @Input() userIsAdmin: boolean = true;
   @Input() product: Product = {} as Product;
-  @Output() deleteProduct = new EventEmitter<number>()
+  @Output() deleteProduct = new EventEmitter<number>();
 
-  handleDeleteProduct(): void{
-    this.deleteProduct.emit(this.product.id);
+  handleDeleteProduct(id: number): void {
+    this.deleteProduct.emit(id);
   }
 }

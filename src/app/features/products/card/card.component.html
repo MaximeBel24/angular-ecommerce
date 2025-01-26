@@ -14,6 +14,6 @@
       <p>Produit indisponible</p>
     }
     @if (userIsAdmin) {
-        <button class="btn btn-danger mt-1" (click)="handleDeleteProduct()">Supprimer</button>
+        <button class="btn btn-danger mt-1" confirm="Êtes vous sûr de vouloir supprimer ce produit ?" (confirmDelete)="handleDeleteProduct(product.id)">Supprimer</button>
     }
 </div>

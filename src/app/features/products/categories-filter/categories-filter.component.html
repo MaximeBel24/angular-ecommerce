@@ -1,0 +1,16 @@
+<div id="filterbar">
+    <div class="box border-bottom">
+        <div class="box-label text-uppercase d-flex align-items-center">
+            Catégories
+        </div>
+        <div class="mt-2 mr-1" id="inner-box">
+            <select (change)="selectedCategorie.emit(valueCategory)" [(ngModel)]="valueCategory">
+                @for (category of propCategories; track category) {
+                    <option value="{{ category }}">
+                        {{ category }}
+                    </option>
+                }
+            </select>
+        </div>
+    </div>
+</div>
